@@ -1,0 +1,24 @@
+{
+  "name": "crud-node-express-mongo",
+  "version": "1.0.0",
+  "description": "complete crud operation node + express + mongo",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajt26/crud-node-express-mongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajt26/crud-node-express-mongo/issues"
+  },
+  "homepage": "https://github.com/rajt26/crud-node-express-mongo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "nodemon": "^2.0.2"
+  }
+}
