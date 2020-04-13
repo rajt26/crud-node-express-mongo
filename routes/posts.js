@@ -7,11 +7,18 @@ const bodyParser = require('body-parser')
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.get('/', (req, res) => {
-  res.render("post/addOrEditPost", {
-    viewTitle: "Insert Post"
-  })
+//get post
+router.get('/', async (req, res) => {
+  try {
+    const posts = await Post.find()
+    res.send(posts)
+
+  } catch (err) {
+    res.json({ message: err })
+  }
 })
+
+//submit post
 router.post('/', (req, res) => {
   const post = new Post({
     title: req.body.title,
@@ -28,21 +35,38 @@ router.post('/', (req, res) => {
 })
 
 
+//specific post
 
-router.get('/list', (req, res) => {
-  res.json('from list')
+router.get('/:postId', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId)
+    res.send(post)
+  } catch (error) {
+    res.send(error)
+  }
 })
-// router.post('/', (req, res) => {
-//   const post = new Post({
-//     title: req.body.title,
-//     description: req.body.description,
-//   })
-//   post.save()
-//     .then(data => {
-//       res.json(data)
-//     })
-//     .catch(err => {
-//       res.json({ message: err })
-//     })
-// })
+
+//delete post
+router.delete('/:postId', async (req, res) => {
+  try {
+    const deletePost = await Post.remove({ _id: req.params.postId })
+    res.send(deletePost)
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+//update post
+router.patch('/:postId', async (req, res) => {
+  try {
+    const updatePost = await Post.update({ _id: req.params.postId }, { $set: { title: req.body.title, description: req.body.description } })
+    res.send(updatePost)
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+
+
+
 module.exports = router
