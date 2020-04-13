@@ -1,0 +1,32 @@
+<h3><a class="btn btn-secondary" href="/movie">create new</a></h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Title : </th>
+      <th>Description : </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each list }}
+    <tr>
+      <td>
+        {{this.title}}
+      </td>
+
+      <td>
+        {{this.description}}
+      </td>
+
+      <td>
+        <a href="/movie/{{this._id}}"> <input type="submit" name="edit" value="Edit"></a>
+      </td>
+
+      <td>
+        <a href="/movie/delete/{{this._id}}" onclick="return confirm('are u sure');"> <input type="submit" name="delete"
+            value="Delete"></a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
